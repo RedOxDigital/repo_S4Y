@@ -1,0 +1,819 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Variant 3 - Tabbed Categories | Socials 4U</title>
+    <meta name="description" content="Frequently asked questions about Socials 4U social media management services">
+    <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+    body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #FFFBF7 0%, #FAF7F3 100%);
+            min-height: 100vh;
+        }
+
+        .faq-section {
+            padding: 100px 20px;
+      position: relative;
+    }
+
+        /* Decorative Background Pattern */
+        .faq-section::before {
+            content: '';
+      position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(212, 164, 154, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(155, 107, 79, 0.08) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heading {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+      letter-spacing: -0.02em;
+    }
+
+        .subheading {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            color: #8B7355;
+            font-style: italic;
+        }
+
+        .body-text {
+            color: #5C5347;
+            line-height: 1.8;
+        }
+
+        .faq-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            justify-content: center;
+            background: white;
+            padding: 12px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+        }
+
+        .tab-button {
+            padding: 14px 28px;
+            background: transparent;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #5C5347;
+      cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            position: relative;
+        }
+
+        .tab-button:hover {
+            background: #FFFBF7;
+            color: #9B6B4F;
+        }
+
+        .tab-button.active {
+            background: linear-gradient(135deg, #9B6B4F 0%, #7A5940 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(155, 107, 79, 0.3);
+        }
+
+        .tab-button:focus-visible {
+            outline: 3px solid #9B6B4F;
+            outline-offset: 2px;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+      opacity: 0;
+                transform: translateY(10px);
+    }
+            to {
+      opacity: 1;
+      transform: translateY(0);
+            }
+        }
+
+        /* FAQ Grid Layout */
+        .faq-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+        }
+
+        .faq-box {
+            background: white;
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .faq-box::before {
+            content: '';
+            position: absolute;
+      top: 0;
+      left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #D4A49A 0%, #9B6B4F 100%);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-box:hover {
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+            border-color: #D4A49A;
+            transform: translateY(-4px);
+        }
+
+        .faq-box:hover::before {
+            transform: scaleX(1);
+        }
+
+        .faq-question-text {
+            font-family: 'Lora', serif;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #2C2820;
+            margin-bottom: 12px;
+            display: flex;
+        align-items: flex-start;
+        gap: 12px;
+      }
+      
+        .faq-icon-inline {
+            width: 24px;
+            height: 24px;
+            color: #9B6B4F;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .faq-answer-text {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #5C5347;
+        margin: 0;
+        }
+
+        /* Category Badge */
+        .category-badge {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #D4A49A 0%, #C9958B 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(212, 164, 154, 0.4);
+        }
+
+        .category-badge svg {
+            width: 20px;
+            height: 20px;
+            color: white;
+        }
+
+        /* Contact CTA */
+        .contact-cta {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #3A4F41 0%, #2C3A31 100%);
+            border-radius: 16px;
+            padding: 48px;
+            text-align: center;
+            color: white;
+            box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+        }
+
+        .contact-cta h3 {
+            font-family: 'Lora', serif;
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .contact-cta p {
+            font-size: 1.05rem;
+            opacity: 0.9;
+            margin-bottom: 24px;
+        }
+
+        .cta-button {
+            background: #D4A49A;
+            color: #2C2820;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 6px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 12px rgba(212, 164, 154, 0.3);
+        }
+
+        .cta-button:hover {
+            background: #E8C4B8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 164, 154, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 60px 16px;
+            }
+
+            .tab-navigation {
+                flex-direction: column;
+            }
+
+            .tab-button {
+                width: 100%;
+                text-align: center;
+            }
+
+            .faq-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .faq-box {
+                padding: 24px;
+            }
+
+            .contact-cta {
+                padding: 32px 24px;
+            }
+
+            .contact-cta h3 {
+                font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <section class="faq-section">
+        <div class="faq-container">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <h1 class="heading text-4xl lg:text-5xl mb-4">
+                    Frequently Asked Questions
+                </h1>
+                <p class="subheading text-xl lg:text-2xl mb-4">
+                    Browse by Category
+                </p>
+                <p class="body-text text-lg max-w-2xl mx-auto">
+                    Find answers organized by topic. Select a category below to explore questions related to services, pricing, process, and more.
+                </p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <nav class="tab-navigation" role="tablist" aria-label="FAQ Categories">
+                <button class="tab-button active" data-tab="getting-started" role="tab" aria-selected="true" aria-controls="tab-getting-started">
+                    Getting Started
+                </button>
+                <button class="tab-button" data-tab="services" role="tab" aria-selected="false" aria-controls="tab-services">
+                    Services
+                </button>
+                <button class="tab-button" data-tab="pricing" role="tab" aria-selected="false" aria-controls="tab-pricing">
+                    Pricing
+                </button>
+                <button class="tab-button" data-tab="process" role="tab" aria-selected="false" aria-controls="tab-process">
+                    Process
+                </button>
+                <button class="tab-button" data-tab="support" role="tab" aria-selected="false" aria-controls="tab-support">
+                    Support
+                </button>
+            </nav>
+
+            <!-- Tab Content: Getting Started -->
+            <div class="tab-content active" id="tab-getting-started" role="tabpanel" aria-labelledby="getting-started-tab">
+                <div class="faq-grid">
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a10 10 0 1 0 10 10H12V2z"></path>
+                                <path d="M12 2a10 10 0 0 1 10 10"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>How do I get started with Socials 4U?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Simply schedule a free 30-minute consultation call. We'll discuss your goals, current social presence, and determine if we're a good fit. If we are, you'll receive a custom proposal within 48 hours, and we can start onboarding within a week.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What information do you need from me initially?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We'll need access to your social accounts, any existing brand guidelines, your logo and brand colors, insight into your target audience, business goals, and examples of content you love. We provide a comprehensive onboarding questionnaire to make this easy.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do I need to have existing social accounts?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Not at all! We can help set up new accounts from scratch or optimize existing ones. If you're starting fresh, we'll handle everything from account creation to profile optimization, ensuring you launch with a strong foundation.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+            </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What industries do you work with?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We work with diverse industries including e-commerce, healthcare, wellness, beauty, professional services, real estate, hospitality, and more. Our team has experience across B2C and B2B sectors, adapting our strategies to each industry's unique needs and audience.
+                        </p>
+                    </article>
+          </div>
+        </div>
+
+            <!-- Tab Content: Services -->
+            <div class="tab-content" id="tab-services" role="tabpanel" aria-labelledby="services-tab">
+                <div class="faq-grid">
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect>
+                                <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What platforms do you manage?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We manage Instagram, Facebook, TikTok, LinkedIn, Pinterest, Twitter, and YouTube. We recommend focusing on 2-3 platforms where your target audience is most active, rather than spreading thin across all channels.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"></path>
+                                <circle cx="12" cy="13" r="3"></circle>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do you provide content creation services?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Yes! We offer professional photography, videography, graphic design, copywriting, and editing. We can create all content in-house or work with assets you provide. Our team includes skilled content creators who produce scroll-stopping visuals.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do you handle community management?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Absolutely. We monitor and respond to comments, DMs, and mentions daily. We engage with your community authentically in your brand voice, answer questions, and foster meaningful conversations that build loyalty and trust.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+            </svg>
+            </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do you run paid advertising campaigns?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Yes! We offer social media advertising services including campaign strategy, ad creative development, targeting, budget management, and optimization. We can manage Facebook, Instagram, LinkedIn, TikTok, and Pinterest ads with proven ROI.
+                        </p>
+                    </article>
+          </div>
+        </div>
+
+            <!-- Tab Content: Pricing -->
+            <div class="tab-content" id="tab-pricing" role="tabpanel" aria-labelledby="pricing-tab">
+                <div class="faq-grid">
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="12" y1="1" x2="12" y2="23"></line>
+                                <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>How much do your services cost?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Packages start at $997/month for basic management (1 platform), $1,497/month for standard (2 platforms with content creation), and $2,997/month for premium (3+ platforms, full-service). Custom enterprise solutions available. All packages include strategy, posting, and reporting.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Are there any setup fees or hidden costs?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            No hidden fees! The monthly rate covers everything: strategy, content creation, posting, community management, and reporting. For new clients, there's a one-time onboarding fee of $500 to cover initial strategy development and account optimization.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+                                <line x1="16" y1="2" x2="16" y2="6"></line>
+                                <line x1="8" y1="2" x2="8" y2="6"></line>
+                                <line x1="3" y1="10" x2="21" y2="10"></line>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What are your contract terms?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We offer flexible month-to-month contracts with no long-term commitments. However, we recommend a minimum 3-month partnership to see meaningful results. You can cancel anytime with 30 days' written notice. No penalties, no hassle.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+            </svg>
+            </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do you offer payment plans?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Yes! We accept monthly payments via credit card, ACH, or wire transfer. For annual commitments, we offer a 10% discount when paid upfront. We use secure payment processing through Stripe for your protection and convenience.
+                        </p>
+                    </article>
+          </div>
+        </div>
+
+            <!-- Tab Content: Process -->
+            <div class="tab-content" id="tab-process" role="tabpanel" aria-labelledby="process-tab">
+                <div class="faq-grid">
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <polyline points="12 6 12 12 16 14"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What's the typical onboarding timeline?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Onboarding takes 5-7 business days. Week 1 includes discovery calls, brand audit, and strategy development. Week 2 covers content calendar creation, approval process setup, and account optimization. We start posting high-quality content by day 10.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                                <polyline points="14 2 14 8 20 8"></polyline>
+                                <line x1="16" y1="13" x2="8" y2="13"></line>
+                                <line x1="16" y1="17" x2="8" y2="17"></line>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>How is content approved before posting?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We use shared tools like Asana, Monday, or Google Drive for content approval. You'll receive your monthly content calendar by the 25th of each month for the next month. You can review, request revisions, and approve via comments. We accommodate rush approvals when needed.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>How do you measure and report on performance?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We provide detailed monthly reports covering key metrics: engagement rate, follower growth, reach, impressions, website clicks, and conversions. Reports include insights, recommendations, and strategy adjustments. We also offer quarterly strategy review calls.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+            </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>How often will we communicate?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            You'll have direct access to your account manager via email, Slack, or phone. We schedule monthly strategy calls, send weekly progress updates, and are available during business hours for quick questions. For urgent matters, we respond within 2 hours.
+                        </p>
+                    </article>
+          </div>
+        </div>
+
+            <!-- Tab Content: Support -->
+            <div class="tab-content" id="tab-support" role="tabpanel" aria-labelledby="support-tab">
+                <div class="faq-grid">
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What if I'm not happy with the service?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We're committed to your satisfaction. If you're unhappy, we'll work immediately to address concerns with revised strategy, new content, or process changes. With month-to-month terms, you can cancel anytime. Most issues are resolved through open communication.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <line x1="12" y1="16" x2="12" y2="12"></line>
+                                <line x1="12" y1="8" x2="12.01" y2="8"></line>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>What happens in case of a crisis or negative comments?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            We have crisis management protocols in place. For negative comments, we respond professionally and empathetically according to best practices. For serious issues, we'll alert you immediately and collaborate on the response. We never delete comments unless they're spam or violate policies.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a10 10 0 1 0 0 20 10 10 0 1 0 0-20zm0 0v20"></path>
+                            </svg>
+                        </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Can I pause my service temporarily?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Yes! We understand business needs change. You can pause service for up to 60 days per year without penalty. Just provide 14 days' notice. During the pause, you won't be charged, and we can resume when you're ready without re-onboarding.
+                        </p>
+                    </article>
+
+                    <article class="faq-box">
+                        <div class="category-badge">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+                                <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            </div>
+                        <h3 class="faq-question-text">
+                            <svg class="faq-icon-inline" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="10"></circle>
+                                <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                                <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                            </svg>
+                            <span>Do you provide training for my team?</span>
+                        </h3>
+                        <p class="faq-answer-text">
+                            Absolutely! We can provide social media training sessions for your team covering best practices, content creation tips, platform updates, and analytics interpretation. Training sessions can be one-time or ongoing, customized to your needs.
+                        </p>
+                    </article>
+          </div>
+        </div>
+
+            <!-- Contact CTA -->
+            <div class="contact-cta">
+                <h3>Still Have Questions?</h3>
+                <p>We're here to help! Schedule a free consultation to discuss your specific needs and goals.</p>
+                <a href="#contact" class="cta-button">Book Your Free Consultation</a>
+        </div>
+      </div>
+    </section>
+
+  <script>
+        // Tab functionality with WCAG compliance
+    document.addEventListener('DOMContentLoaded', function() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const targetTab = this.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('active');
+                        btn.setAttribute('aria-selected', 'false');
+                    });
+                    
+                    tabContents.forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    
+                    // Add active class to clicked button and corresponding content
+                    this.classList.add('active');
+                    this.setAttribute('aria-selected', 'true');
+                    document.getElementById(`tab-${targetTab}`).classList.add('active');
+        });
+        
+        // Keyboard navigation
+                button.addEventListener('keydown', function(e) {
+                    let index = Array.from(tabButtons).indexOf(this);
+                    
+                    if (e.key === 'ArrowRight') {
+            e.preventDefault();
+                        index = (index + 1) % tabButtons.length;
+                        tabButtons[index].focus();
+                        tabButtons[index].click();
+                    } else if (e.key === 'ArrowLeft') {
+            e.preventDefault();
+                        index = (index - 1 + tabButtons.length) % tabButtons.length;
+                        tabButtons[index].focus();
+                        tabButtons[index].click();
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>

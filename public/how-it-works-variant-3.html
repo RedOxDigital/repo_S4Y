@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - Variant 3</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F9F7F4;
+      color: #2D2D2D;
+    }
+
+    .how-it-works-section {
+      position: relative;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    /* Brush connectors similar to Services section */
+    .brush-connector {
+      position: absolute;
+      height: 3px;
+      width: 200px;
+      background: linear-gradient(90deg, transparent 0%, #FF8C5A 50%, transparent 100%);
+      top: 50%;
+      opacity: 0.3;
+      z-index: 0;
+    }
+
+    .brush-left {
+      left: 0;
+      transform: translateY(-50%);
+    }
+
+    .brush-right {
+      right: 0;
+      transform: translateY(-50%);
+    }
+
+    /* Decorative Elements */
+    .deco-element {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+      opacity: 0.15;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .deco-1 {
+      width: 400px;
+      height: 400px;
+      background: linear-gradient(135deg, #FF8C5A, #F9A826);
+      top: 10%;
+      left: -5%;
+    }
+
+    .deco-2 {
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, #8BA897, #66BB6A);
+      bottom: 10%;
+      right: -5%;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Typography */
+    .heading {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #2D2D2D;
+    }
+
+    .subheading {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #2D2D2D;
+    }
+
+    .body-text {
+      font-weight: 400;
+      line-height: 1.6;
+      color: #4A4A4A;
+    }
+
+    /* Service Circle V3 - Similar to Services.jsx */
+    .service-circle-v3 {
+      perspective: 1000px;
+      margin-bottom: 30px;
+    }
+
+    .circle-outer-v3 {
+      width: 280px;
+      height: 280px;
+      margin: 0 auto;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(255, 140, 90, 0.1), rgba(249, 168, 38, 0.1));
+      padding: 8px;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .circle-middle-v3 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: white;
+      padding: 8px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .circle-inner-v3 {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      background: white;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 30px 20px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .circle-bg-image {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      filter: grayscale(100%);
+    }
+
+    .service-circle-v3:hover .circle-outer-v3 {
+      transform: scale(1.05);
+    }
+
+    .service-circle-v3:hover .circle-middle-v3 {
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    .service-circle-v3:hover .circle-bg-image {
+      opacity: 0.25;
+      transform: scale(1.1);
+      filter: grayscale(0%);
+    }
+
+    /* Step Number in Circle */
+    .step-number-circle {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+
+    .step-title-circle {
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 8px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .step-subtitle {
+      font-size: 13px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Description Box */
+    .step-description-box {
+      background: white;
+      border-radius: 20px;
+      padding: 28px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      min-height: 200px;
+    }
+
+    .step-description-box:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Feature List */
+    .feature-list {
+      list-style: none;
+      margin-top: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .feature-item {
+      display: flex;
+      align-items: start;
+      gap: 12px;
+      padding: 12px;
+      background: linear-gradient(135deg, rgba(255, 140, 90, 0.03), rgba(249, 168, 38, 0.03));
+      border-radius: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-item:hover {
+      background: linear-gradient(135deg, rgba(255, 140, 90, 0.08), rgba(249, 168, 38, 0.08));
+      transform: translateX(5px);
+    }
+
+    .feature-icon {
+      width: 20px;
+      height: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-block;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #FF8C5A 0%, #F9A826 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 10px 30px rgba(255, 140, 90, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 140, 90, 0.4);
+    }
+
+    /* Stat Badge */
+    .stat-badge-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      margin-top: 40px;
+      padding: 32px;
+      background: linear-gradient(135deg, rgba(139, 168, 151, 0.05), rgba(102, 187, 106, 0.05));
+      border-radius: 20px;
+      border: 2px solid rgba(139, 168, 151, 0.2);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+    }
+
+    .stat-number {
+      font-size: 32px;
+      font-weight: 800;
+      background: linear-gradient(135deg, #8BA897, #66BB6A);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: #4A4A4A;
+    }
+
+    /* Final CTA Card */
+    .final-cta-card {
+      background: white;
+      border-radius: 32px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      margin-top: 60px;
+      text-align: center;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  </style>
+</head>
+<body>
+  <section class="how-it-works-section">
+    <!-- Decorative Elements -->
+    <div class="deco-element deco-1"></div>
+    <div class="deco-element deco-2"></div>
+
+    <div class="content-wrapper">
+      <div class="max-w-7xl mx-auto px-6">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <h2 class="heading text-5xl lg:text-6xl mb-6">
+            S4Y Blueprint for Success
+          </h2>
+          <p class="subheading text-2xl lg:text-3xl mb-4">
+            How We Transform Your Social Media
+          </p>
+          <p class="body-text text-lg max-w-3xl mx-auto">
+            Our systematic 4-phase approach takes you from chaos to clarity, delivering consistent results while you focus on running your business.
+          </p>
+        </div>
+
+        <!-- Steps Grid -->
+        <div class="relative">
+          <!-- Brush stroke connectors -->
+          <div class="brush-connector brush-left hidden lg:block"></div>
+          <div class="brush-connector brush-right hidden lg:block"></div>
+
+          <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12 items-start relative z-10 mb-16">
+            
+            <!-- Step 1 -->
+            <div>
+              <div class="service-circle-v3">
+                <div class="circle-outer-v3" style="background: linear-gradient(135deg, rgba(255, 140, 90, 0.15), rgba(249, 168, 38, 0.15));">
+                  <div class="circle-middle-v3">
+                    <div class="circle-inner-v3">
+                      <div 
+                        class="circle-bg-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=400&fit=crop');"
+                      ></div>
+                      <div class="step-number-circle" style="background: linear-gradient(135deg, #FF8C5A, #F9A826);">
+                        1
+                      </div>
+                      <h3 class="step-title-circle">Deep Discovery</h3>
+                      <p class="step-subtitle" style="color: #FF8C5A;">Foundation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step-description-box">
+                <p class="body-text text-sm mb-4">
+                  <strong>Strategic deep-dive</strong> to understand your business, ideal client, and unique value. We get crystal clear on what makes you different.
+                </p>
+                <ul class="feature-list">
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #FF8C5A;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Business Goals Audit</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #FF8C5A;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Ideal Client Mapping</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #FF8C5A;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Brand Voice Analysis</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Step 2 -->
+            <div>
+              <div class="service-circle-v3">
+                <div class="circle-outer-v3" style="background: linear-gradient(135deg, rgba(249, 168, 38, 0.15), rgba(229, 129, 112, 0.15));">
+                  <div class="circle-middle-v3">
+                    <div class="circle-inner-v3">
+                      <div 
+                        class="circle-bg-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1542626991-cbc4e32524cc?w=400&h=400&fit=crop');"
+                      ></div>
+                      <div class="step-number-circle" style="background: linear-gradient(135deg, #F9A826, #E58170);">
+                        2
+                      </div>
+                      <h3 class="step-title-circle">Strategic Blueprint</h3>
+                      <p class="step-subtitle" style="color: #F9A826;">Planning</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step-description-box">
+                <p class="body-text text-sm mb-4">
+                  <strong>Custom content strategy</strong> engineered for your business. Every post has a purpose—no more random content.
+                </p>
+                <ul class="feature-list">
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #F9A826;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">90-Day Content Plan</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #F9A826;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Content Pillar Design</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #F9A826;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Growth Framework</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Step 3 -->
+            <div>
+              <div class="service-circle-v3">
+                <div class="circle-outer-v3" style="background: linear-gradient(135deg, rgba(229, 129, 112, 0.15), rgba(205, 109, 93, 0.15));">
+                  <div class="circle-middle-v3">
+                    <div class="circle-inner-v3">
+                      <div 
+                        class="circle-bg-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=400&fit=crop');"
+                      ></div>
+                      <div class="step-number-circle" style="background: linear-gradient(135deg, #E58170, #CD6D5D);">
+                        3
+                      </div>
+                      <h3 class="step-title-circle">Flawless Execution</h3>
+                      <p class="step-subtitle" style="color: #E58170;">Implementation</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step-description-box">
+                <p class="body-text text-sm mb-4">
+                  <strong>Complete done-for-you service.</strong> We create, schedule, post, and engage—authentically representing your brand.
+                </p>
+                <ul class="feature-list">
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #E58170;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Content Creation</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #E58170;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Daily Posting</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #E58170;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Community Management</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Step 4 -->
+            <div>
+              <div class="service-circle-v3">
+                <div class="circle-outer-v3" style="background: linear-gradient(135deg, rgba(139, 168, 151, 0.15), rgba(102, 187, 106, 0.15));">
+                  <div class="circle-middle-v3">
+                    <div class="circle-inner-v3">
+                      <div 
+                        class="circle-bg-image"
+                        style="background-image: url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop');"
+                      ></div>
+                      <div class="step-number-circle" style="background: linear-gradient(135deg, #8BA897, #66BB6A);">
+                        4
+                      </div>
+                      <h3 class="step-title-circle">Proven Results</h3>
+                      <p class="step-subtitle" style="color: #8BA897;">Optimization</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="step-description-box">
+                <p class="body-text text-sm mb-4">
+                  <strong>Track real business outcomes.</strong> Clear reports on leads, sales, and ROI—not vanity metrics. Then we optimize and scale.
+                </p>
+                <ul class="feature-list">
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #8BA897;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Monthly Reporting</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #8BA897;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">ROI Analysis</span>
+                  </li>
+                  <li class="feature-item">
+                    <svg class="feature-icon" style="stroke: #8BA897;" fill="none" viewBox="0 0 24 24" stroke-width="2.5">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span class="body-text text-xs">Strategy Refinement</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Results Stats -->
+        <div class="stat-badge-row">
+          <div class="stat-item">
+            <div class="stat-number">0</div>
+            <p class="stat-label">Mental Load</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <p class="stat-label">Done For You</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <p class="stat-label">Peace of Mind</p>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">∞</div>
+            <p class="stat-label">Time Saved</p>
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="final-cta-card">
+          <h3 class="heading text-4xl mb-6">Experience the S4Y Difference</h3>
+          <p class="body-text text-xl mb-8 max-w-2xl mx-auto">
+            Stop managing your social media manager. Get a strategic partner who takes the lead, delivers measurable results, and gives you back your time—without the mental load.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" class="cta-button">
+              S4Y - Get Started (Free Strategy Session)
+            </a>
+            <a href="#services" class="cta-button" style="background: linear-gradient(135deg, #8BA897 0%, #66BB6A 100%);">
+              Explore Our Services
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+

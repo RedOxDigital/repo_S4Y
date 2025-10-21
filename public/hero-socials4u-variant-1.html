@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socials 4U - Hero Variant 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(180deg, rgba(255,251,247,0.95) 0%, rgba(250,247,243,0.9) 100%),
+                        url('../Inpso/Heading.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .heading {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            letter-spacing: -0.02em;
+        }
+
+        .subheading {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            color: #8B7355;
+            font-style: italic;
+        }
+
+        .body-text {
+            color: #5C5347;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #9B6B4F;
+            color: white;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: #7A5940;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 79, 0.3);
+        }
+
+        .feature-card {
+            background: white;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .feature-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            margin-bottom: 12px;
+        }
+
+        .image-wrapper {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+            transform: perspective(1000px) rotateY(-5deg);
+            transition: all 0.4s ease;
+        }
+
+        .image-wrapper:hover {
+            transform: perspective(1000px) rotateY(0deg);
+            box-shadow: 0 16px 50px rgba(0,0,0,0.2);
+        }
+
+        .image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+            
+            .image-wrapper {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Navigation -->
+        <nav class="max-w-7xl mx-auto px-6 py-6">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold" style="font-family: 'Lora', serif; color: #2C2820;">
+                    SOCIALS 4OU SAY
+                </div>
+                <div class="hidden md:flex gap-8 text-sm font-medium" style="color: #5C5347;">
+                    <a href="#" class="hover:text-[#9B6B4F] transition">HOME</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">ABOUT</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">SERVICES</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">CONTACT</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto px-6 py-16 lg:py-24">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <!-- Left Column -->
+                <div>
+                    <h1 class="heading text-5xl lg:text-6xl mb-4">
+                        SOCIALS 4U
+                    </h1>
+                    <p class="subheading text-2xl lg:text-3xl mb-8">
+                        Callie Cox
+                    </p>
+                    
+                    <p class="body-text text-lg mb-8 max-w-lg">
+                        Transform your social media presence with expert content creation and strategic management. We help brands tell their story authentically and grow their engaged community.
+                    </p>
+
+                    <a href="#contact" class="cta-button">
+                        Get Started
+                    </a>
+
+                    <!-- Feature Cards -->
+                    <div class="grid sm:grid-cols-2 gap-6 mt-16">
+                        <div class="feature-card">
+                            <h3 class="feature-title text-xl mb-2">Expert Influencer Strategy</h3>
+                            <p class="body-text text-sm">
+                                Strategic planning and authentic partnerships that drive real engagement and brand growth.
+                            </p>
+                            <a href="#" class="cta-button mt-6 text-sm py-3 px-6">
+                                Learn More
+                            </a>
+                        </div>
+
+                        <div class="feature-card">
+                            <h3 class="feature-title text-xl mb-2">Instagram Stories Strategy</h3>
+                            <p class="body-text text-sm">
+                                Captivating stories that keep your audience engaged and coming back for more daily.
+                            </p>
+                            <a href="#" class="cta-button mt-6 text-sm py-3 px-6">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Image -->
+                <div>
+                    <div class="image-wrapper">
+                        <img 
+                            src="https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop" 
+                            alt="Professional content creator at work"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Feature Cards -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-20">
+                <div class="feature-card">
+                    <h3 class="feature-title text-lg mb-2">Customized Marketing Strategy</h3>
+                    <p class="body-text text-sm mb-4">
+                        Tailored strategies designed specifically for your brand's unique voice and goals.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title text-lg mb-2">Brand Development</h3>
+                    <p class="body-text text-sm mb-4">
+                        Build a cohesive brand identity that resonates with your target audience authentically.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title text-lg mb-2">Small Business Coaching</h3>
+                    <p class="body-text text-sm mb-4">
+                        One-on-one guidance to help small businesses thrive in the digital space.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="feature-card">
+                    <h3 class="feature-title text-lg mb-2">People Are Already Discovering</h3>
+                    <p class="body-text text-sm mb-4">
+                        Join successful brands already growing their presence with our proven strategies.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

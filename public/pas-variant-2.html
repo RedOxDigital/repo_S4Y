@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAS Variant 2 - Transform Your Social Media | Socials4U</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .heading {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      color: #2C2820;
+      letter-spacing: -0.02em;
+    }
+
+    .subheading {
+      font-family: 'Lora', serif;
+      font-weight: 400;
+      background: linear-gradient(135deg, #CD6D5D, #A34347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+
+    .body-text {
+      color: #5C5347;
+      line-height: 1.8;
+    }
+
+    .pas-section-v2 {
+      background: linear-gradient(135deg, rgba(250, 247, 243, 0.85) 0%, rgba(241, 236, 230, 0.8) 100%),
+                  url('../Inpso/Socials%204u-2.webp');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Artistic brush stroke background elements */
+    .brush-element {
+      position: absolute;
+      opacity: 0.25;
+      z-index: 0;
+    }
+
+    .brush-top {
+      top: 5%;
+      right: 10%;
+      width: 420px;
+      height: 140px;
+      background: 
+        linear-gradient(135deg, #FF8C5A 0%, #F4A89F 50%, #CD6D5D 100%),
+        radial-gradient(ellipse at 30% 40%, rgba(255,255,255,0.4) 0%, transparent 60%);
+      background-blend-mode: overlay;
+      border-radius: 60% 40% 70% 30%;
+      transform: rotate(15deg);
+      filter: blur(1px);
+      animation: brush-float-1 15s ease-in-out infinite;
+    }
+
+    .brush-middle {
+      top: 45%;
+      left: 5%;
+      width: 200px;
+      height: 65px;
+      background: 
+        linear-gradient(135deg, #F4D160 0%, #E8A65D 50%, #FFB366 100%),
+        conic-gradient(from 45deg, rgba(255,255,255,0.3) 0%, transparent 50%);
+      background-blend-mode: overlay;
+      border-radius: 50% 70% 40% 60%;
+      transform: rotate(-20deg);
+      filter: blur(1.2px);
+      animation: brush-float-2 12s ease-in-out infinite;
+    }
+
+    .brush-bottom {
+      bottom: 8%;
+      right: 15%;
+      width: 380px;
+      height: 130px;
+      background: 
+        linear-gradient(135deg, #8BA897 0%, #A4C3B2 50%, #81C784 100%),
+        linear-gradient(180deg, rgba(255,255,255,0.3) 0%, transparent 100%);
+      background-blend-mode: overlay;
+      border-radius: 70% 30% 60% 40%;
+      transform: rotate(12deg);
+      filter: blur(0.8px);
+      animation: brush-float-3 13s ease-in-out infinite;
+    }
+
+    @keyframes brush-float-1 {
+      0%, 100% { transform: translateY(0px) rotate(15deg); opacity: 0.25; }
+      50% { transform: translateY(-25px) rotate(18deg); opacity: 0.35; }
+    }
+
+    @keyframes brush-float-2 {
+      0%, 100% { transform: translateY(0px) rotate(-20deg); opacity: 0.25; }
+      50% { transform: translateY(-18px) rotate(-22deg); opacity: 0.32; }
+    }
+
+    @keyframes brush-float-3 {
+      0%, 100% { transform: translateY(0px) rotate(12deg); opacity: 0.25; }
+      50% { transform: translateY(-22px) rotate(15deg); opacity: 0.3; }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Staggered layout cards - Hero.jsx style */
+    .stagger-card {
+      background: white;
+      border-radius: 8px;
+      padding: 50px;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .stagger-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, transparent, var(--accent-color), transparent);
+    }
+
+    .stagger-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+
+    .stagger-card:hover::before {
+      animation: shimmer 2s infinite;
+    }
+
+    @keyframes shimmer {
+      0% { transform: translateX(-100%); }
+      100% { transform: translateX(100%); }
+    }
+
+    .problem-stagger {
+      --accent-color: #FF8C5A;
+    }
+
+    .agitate-stagger {
+      --accent-color: #9E2410;
+    }
+
+    .solution-stagger {
+      --accent-color: #8BA897;
+    }
+
+    .image-container {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      padding: 20px;
+      background: white;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 4px;
+      display: block;
+    }
+
+    .stat-badge {
+      background: white;
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+    }
+
+    .stat-badge:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.15);
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #FF8C5A 0%, #CD6D5D 100%);
+      color: white;
+      font-weight: 600;
+      padding: 18px 48px;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 20px rgba(255, 140, 90, 0.35);
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #E67A4C 0%, #B85E50 100%);
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(255, 140, 90, 0.5);
+    }
+
+    .feature-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+      transition: all 0.3s ease;
+    }
+
+    .feature-icon svg {
+      width: 40px;
+      height: 40px;
+      stroke: white;
+      fill: none;
+      stroke-width: 2;
+    }
+
+    .feature-icon:hover {
+      transform: scale(1.1) rotate(5deg);
+    }
+
+    @media (max-width: 768px) {
+      .pas-section-v2 {
+        background-attachment: scroll;
+      }
+
+      .stagger-card {
+        padding: 30px 25px;
+      }
+
+      .image-container {
+        max-width: 300px;
+      }
+
+      .brush-top {
+        width: 294px;
+        height: 98px;
+      }
+
+      .brush-middle {
+        width: 140px;
+        height: 46px;
+      }
+
+      .brush-bottom {
+        width: 266px;
+        height: 91px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="pas-section-v2">
+    <!-- Decorative Brush Elements -->
+    <div class="brush-element brush-top"></div>
+    <div class="brush-element brush-middle"></div>
+    <div class="brush-element brush-bottom"></div>
+
+    <div class="content-wrapper">
+      <div class="max-w-7xl mx-auto px-6 py-16">
+        
+        <!-- Hero Header -->
+        <div class="text-center mb-20">
+          <h1 class="heading text-5xl lg:text-7xl mb-8">
+            From Chaos to Clarity
+          </h1>
+          <p class="subheading text-3xl lg:text-4xl mb-6">
+            Your Social Media Transformation Starts Here
+          </p>
+        </div>
+
+        <!-- Problem Section with Staggered Layout -->
+        <div class="grid lg:grid-cols-5 gap-12 items-center mb-32">
+          <div class="lg:col-span-2">
+            <div class="image-container" style="height: 480px;">
+              <img 
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=700&fit=crop" 
+                alt="Social Media Frustration"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <div class="lg:col-span-3">
+            <div class="stagger-card problem-stagger">
+              <div class="feature-icon" style="background: linear-gradient(135deg, #FF8C5A, #CD6D5D);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="11" cy="11" r="8"></circle>
+                  <path d="m21 21-4.35-4.35"></path>
+                </svg>
+              </div>
+              <h2 class="heading text-3xl mb-6 text-center">Does Your Social Media Look Busy, But Feel Broken?</h2>
+              <p class="body-text text-lg mb-6">
+                If your social media marketing isn't generating revenue or clients, <strong>it is broken</strong>. You are likely trapped in a cycle of creating content that "looks busy but doesn't actually bring in any clients," exhausting time and resources on activity that fails to translate into tangible sales.
+              </p>
+
+              <div class="grid grid-cols-2 gap-6 mt-10">
+                <div class="stat-badge">
+                  <div class="text-4xl font-bold mb-2" style="color: #9E2410;">0.05%</div>
+                  <p class="body-text text-sm font-semibold">Organic Reach</p>
+                </div>
+                <div class="stat-badge">
+                  <div class="text-4xl font-bold mb-2" style="color: #9E2410;">0</div>
+                  <p class="body-text text-sm font-semibold">New Clients</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agitate Section -->
+        <div class="mb-32">
+          <div class="stagger-card agitate-stagger max-w-6xl mx-auto">
+            <div class="feature-icon" style="background: linear-gradient(135deg, #9E2410, #7A1C0A);">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+              </svg>
+            </div>
+            <h2 class="heading text-3xl mb-8 text-center">Are You Exhausted from "Throwing Spaghetti at the Wall"?</h2>
+            <p class="body-text text-xl mb-10 text-center max-w-4xl mx-auto">
+              This constant "busywork" is frustrating. You're creating content just for the sake of it, only to watch it disappear as organic reach plummets to as low as <strong>0.05%</strong>.
+            </p>
+
+            <div class="grid md:grid-cols-4 gap-6">
+              <div class="text-center">
+                <div class="image-container" style="height: 200px; max-width: 200px; margin: 0 auto; padding: 12px;">
+                  <img 
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=400&fit=crop" 
+                    alt="Chasing Metrics"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="body-text font-semibold mt-4 mb-2">Ghost Metrics</h4>
+                <p class="body-text text-sm">Vanity numbers don't pay bills</p>
+              </div>
+
+              <div class="text-center">
+                <div class="image-container" style="height: 200px; max-width: 200px; margin: 0 auto; padding: 12px;">
+                  <img 
+                    src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=400&fit=crop" 
+                    alt="Content Paralysis"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="body-text font-semibold mt-4 mb-2">Perfectionism</h4>
+                <p class="body-text text-sm">Leading to inconsistency</p>
+              </div>
+
+              <div class="text-center">
+                <div class="image-container" style="height: 200px; max-width: 200px; margin: 0 auto; padding: 12px;">
+                  <img 
+                    src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400&h=400&fit=crop" 
+                    alt="Content Creation Stress"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="body-text font-semibold mt-4 mb-2">Content Chaos</h4>
+                <p class="body-text text-sm">No strategy, just busywork</p>
+              </div>
+
+              <div class="text-center">
+                <div class="image-container" style="height: 200px; max-width: 200px; margin: 0 auto; padding: 12px;">
+                  <img 
+                    src="https://images.unsplash.com/photo-1509475826633-fed577a2c71b?w=400&h=400&fit=crop" 
+                    alt="Time Drain"
+                    loading="lazy"
+                  />
+                </div>
+                <h4 class="body-text font-semibold mt-4 mb-2">Time Hemorrhage</h4>
+                <p class="body-text text-sm">Your most valuable asset</p>
+              </div>
+            </div>
+
+            <div class="mt-12 p-8 bg-gradient-to-r from-red-50 to-orange-50 rounded-2xl border-2 border-red-200">
+              <p class="body-text text-2xl font-bold text-center" style="color: #9E2410;">
+                This chaotic approach costs you your most valuable asset—<em>time</em>—and brings zero clients in the door.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Solution Section -->
+        <div class="grid lg:grid-cols-5 gap-12 items-center mb-20">
+          <div class="lg:col-span-3 order-2 lg:order-1">
+            <div class="stagger-card solution-stagger">
+              <div class="feature-icon" style="background: linear-gradient(135deg, #8BA897, #66BB6A);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+              </div>
+              <h2 class="heading text-3xl mb-6 text-center">How Do You Turn That "Busywork" into a Client Engine?</h2>
+              <p class="body-text text-lg mb-6">
+                You move from chaos to clarity with a <strong>proven strategic framework</strong>. We first establish your foundation by getting crystal clear on your single best offer, your ideal client, and the message that truly connects with them.
+              </p>
+              <p class="body-text text-lg mb-8">
+                From there, we build a powerful <strong>content engine</strong> designed to deliver consistent value, build unshakable trust, and forge the genuine relationships that predictably turn your audience into high-value clients.
+              </p>
+
+              <div class="grid grid-cols-3 gap-4">
+                <div class="stat-badge" style="background: linear-gradient(135deg, rgba(139, 168, 151, 0.1), rgba(102, 187, 106, 0.1));">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; margin: 0 auto 8px; stroke: #8BA897;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <circle cx="12" cy="12" r="6"></circle>
+                    <circle cx="12" cy="12" r="2"></circle>
+                  </svg>
+                  <p class="body-text text-sm font-semibold">Clear Strategy</p>
+                </div>
+                <div class="stat-badge" style="background: linear-gradient(135deg, rgba(139, 168, 151, 0.1), rgba(102, 187, 106, 0.1));">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; margin: 0 auto 8px; stroke: #8BA897;">
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                  </svg>
+                  <p class="body-text text-sm font-semibold">Content Engine</p>
+                </div>
+                <div class="stat-badge" style="background: linear-gradient(135deg, rgba(139, 168, 151, 0.1), rgba(102, 187, 106, 0.1));">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 32px; height: 32px; margin: 0 auto 8px; stroke: #8BA897;">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                  </svg>
+                  <p class="body-text text-sm font-semibold">Real Results</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-2 order-1 lg:order-2">
+            <div class="image-container" style="height: 480px;">
+              <img 
+                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=600&h=700&fit=crop" 
+                alt="Strategic Success"
+                loading="lazy"
+              />
+            </div>
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="text-center">
+          <div class="stagger-card max-w-4xl mx-auto" style="--accent-color: #FF8C5A;">
+            <h2 class="heading text-4xl mb-6">Transform Your Social Media Today</h2>
+            <p class="body-text text-xl mb-10 max-w-2xl mx-auto">
+              Stop managing your manager. Experience the S4Y difference with a strategic partner who delivers total relief, measurable results, and gives you back your time—without the mental load.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+              <a href="#contact" class="cta-button">
+                S4Y - Get Started (Free Strategy Session)
+              </a>
+              <a href="#services" class="cta-button" style="background: linear-gradient(135deg, #8BA897 0%, #66BB6A 100%);">
+                See the S4Y Blueprint
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+

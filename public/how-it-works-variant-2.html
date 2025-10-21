@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works - Variant 2</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: #F9F7F4;
+      color: #2D2D2D;
+    }
+
+    .how-it-works-section {
+      position: relative;
+      padding: 80px 0;
+      overflow: hidden;
+    }
+
+    /* Color Blocks similar to Hero section */
+    .color-block {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(100px);
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .block-1 {
+      width: 500px;
+      height: 500px;
+      background: linear-gradient(135deg, #FF8C5A, #F9A826);
+      top: 10%;
+      left: -10%;
+    }
+
+    .block-2 {
+      width: 600px;
+      height: 600px;
+      background: linear-gradient(135deg, #E58170, #CD6D5D);
+      top: 50%;
+      right: -15%;
+    }
+
+    .block-3 {
+      width: 450px;
+      height: 450px;
+      background: linear-gradient(135deg, #8BA897, #66BB6A);
+      bottom: 5%;
+      left: 10%;
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Typography */
+    .heading {
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      color: #2D2D2D;
+    }
+
+    .subheading {
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+      color: #2D2D2D;
+    }
+
+    .body-text {
+      font-weight: 400;
+      line-height: 1.6;
+      color: #4A4A4A;
+    }
+
+    /* Timeline Container */
+    .timeline-container {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Timeline Line */
+    .timeline-line {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(180deg, #FF8C5A 0%, #F9A826 25%, #E58170 50%, #8BA897 100%);
+      transform: translateX(-50%);
+    }
+
+    @media (max-width: 768px) {
+      .timeline-line {
+        left: 40px;
+      }
+    }
+
+    /* Timeline Item */
+    .timeline-item {
+      position: relative;
+      margin-bottom: 80px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .timeline-item:nth-child(even) .timeline-content {
+      order: 2;
+    }
+
+    .timeline-item:nth-child(even) .timeline-visual {
+      order: 1;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-item {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        padding-left: 80px;
+      }
+
+      .timeline-item:nth-child(even) .timeline-content {
+        order: 1;
+      }
+
+      .timeline-item:nth-child(even) .timeline-visual {
+        order: 2;
+      }
+    }
+
+    /* Animated Timeline Dot */
+    .timeline-dot {
+      position: absolute;
+      left: 50%;
+      top: 0;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: white;
+      border: 5px solid #FF8C5A;
+      transform: translateX(-50%);
+      z-index: 10;
+      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.6), 0 4px 20px rgba(255, 140, 90, 0.4);
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      will-change: top;
+    }
+
+    @media (max-width: 768px) {
+      .timeline-dot {
+        left: 40px;
+      }
+    }
+
+    /* Pulse animation for the dot */
+    @keyframes pulse {
+      0%, 100% {
+        box-shadow: 0 0 0 10px rgba(255, 255, 255, 0.6), 0 4px 20px rgba(255, 140, 90, 0.4);
+      }
+      50% {
+        box-shadow: 0 0 0 14px rgba(255, 255, 255, 0.4), 0 4px 30px rgba(255, 140, 90, 0.6);
+      }
+    }
+
+    .timeline-dot {
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    /* Step Card */
+    .step-card {
+      background: white;
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      height: 100%;
+    }
+
+    .step-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+    }
+
+    /* Step Header */
+    .step-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      margin-bottom: 24px;
+    }
+
+    .step-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-center;
+      font-size: 32px;
+      font-weight: 800;
+      color: white;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .step-icon::before {
+      content: '';
+      position: absolute;
+      inset: -8px;
+      border-radius: 50%;
+      background: inherit;
+      opacity: 0.2;
+      z-index: -1;
+    }
+
+    /* Image Container */
+    .image-container {
+      border-radius: 20px;
+      overflow: hidden;
+      position: relative;
+      height: 350px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .image-container:hover img {
+      transform: scale(1.05);
+    }
+
+    /* Key Points */
+    .key-points {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .key-point {
+      padding: 16px;
+      background: linear-gradient(135deg, rgba(255, 140, 90, 0.05), rgba(249, 168, 38, 0.05));
+      border-radius: 12px;
+      border-left: 3px solid currentColor;
+    }
+
+    /* CTA Button */
+    .cta-button {
+      display: inline-block;
+      padding: 18px 40px;
+      background: linear-gradient(135deg, #FF8C5A 0%, #F9A826 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 16px;
+      box-shadow: 0 10px 30px rgba(255, 140, 90, 0.3);
+      transition: all 0.3s ease;
+    }
+
+    .cta-button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(255, 140, 90, 0.4);
+    }
+
+    /* Final Card */
+    .final-card {
+      background: white;
+      border-radius: 32px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      max-width: 900px;
+      margin: 60px auto 0;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <section class="how-it-works-section">
+    <!-- Decorative Color Blocks -->
+    <div class="color-block block-1"></div>
+    <div class="color-block block-2"></div>
+    <div class="color-block block-3"></div>
+
+    <div class="content-wrapper">
+      <div class="max-w-7xl mx-auto px-6">
+        
+        <!-- Section Header -->
+        <div class="text-center mb-20">
+          <h2 class="heading text-5xl lg:text-6xl mb-6">
+            The S4Y Journey
+          </h2>
+          <p class="subheading text-2xl lg:text-3xl mb-4">
+            Your Path to Social Media Success
+          </p>
+          <p class="body-text text-lg max-w-3xl mx-auto">
+            Follow our proven 4-step process from strategy to results—designed to give you complete peace of mind while we transform your social presence into a client-generating machine.
+          </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-container" id="timelineContainer">
+          <div class="timeline-line"></div>
+          <!-- Single animated timeline dot -->
+          <div class="timeline-dot" id="timelineDot"></div>
+
+          <!-- Step 1 -->
+          <div class="timeline-item" data-step="1" data-color="#FF8C5A">
+            <div class="timeline-content">
+              <div class="step-card">
+                <div class="step-header">
+                  <div class="step-icon" style="background: linear-gradient(135deg, #FF8C5A, #F9A826);">
+                    1
+                  </div>
+                  <div>
+                    <h3 class="heading text-2xl mb-1">Discovery</h3>
+                    <p class="body-text text-sm" style="color: #FF8C5A; font-weight: 600;">Foundation Phase</p>
+                  </div>
+                </div>
+                <p class="body-text text-lg">
+                  We dig deep to understand <strong>your business, your audience, and your goals</strong>. This strategic session uncovers your unique value and builds the foundation for authentic content.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-visual">
+              <div class="image-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop" 
+                  alt="Discovery Session"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="timeline-item" data-step="2" data-color="#F9A826">
+            <div class="timeline-content">
+              <div class="step-card">
+                <div class="step-header">
+                  <div class="step-icon" style="background: linear-gradient(135deg, #F9A826, #E58170);">
+                    2
+                  </div>
+                  <div>
+                    <h3 class="heading text-2xl mb-1">Strategy</h3>
+                    <p class="body-text text-sm" style="color: #F9A826; font-weight: 600;">Planning Phase</p>
+                  </div>
+                </div>
+                <p class="body-text text-lg">
+                  We craft your <strong>custom content strategy and calendar</strong>—aligned to your business goals, not random posting. Every piece of content has a purpose and drives toward measurable outcomes.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-visual">
+              <div class="image-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?w=800&h=600&fit=crop" 
+                  alt="Strategy Planning"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div class="timeline-item" data-step="3" data-color="#E58170">
+            <div class="timeline-content">
+              <div class="step-card">
+                <div class="step-header">
+                  <div class="step-icon" style="background: linear-gradient(135deg, #E58170, #CD6D5D);">
+                    3
+                  </div>
+                  <div>
+                    <h3 class="heading text-2xl mb-1">Execution</h3>
+                    <p class="body-text text-sm" style="color: #E58170; font-weight: 600;">Implementation Phase</p>
+                  </div>
+                </div>
+                <p class="body-text text-lg">
+                  This is where we shine. <strong>We handle everything</strong>—content creation, scheduling, posting, and engagement. You approve the plan, then we execute flawlessly while you run your business.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-visual">
+              <div class="image-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=800&h=600&fit=crop" 
+                  alt="Content Execution"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div class="timeline-item" data-step="4" data-color="#8BA897">
+            <div class="timeline-content">
+              <div class="step-card">
+                <div class="step-header">
+                  <div class="step-icon" style="background: linear-gradient(135deg, #8BA897, #66BB6A);">
+                    4
+                  </div>
+                  <div>
+                    <h3 class="heading text-2xl mb-1">Results</h3>
+                    <p class="body-text text-sm" style="color: #8BA897; font-weight: 600;">Optimization Phase</p>
+                  </div>
+                </div>
+                <p class="body-text text-lg">
+                  We measure what matters—<strong>leads, sales, and business outcomes</strong>. Clear monthly reports show your ROI. Then we optimize and scale what's working to drive even better results.
+                </p>
+              </div>
+            </div>
+            <div class="timeline-visual">
+              <div class="image-container">
+                <img 
+                  src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&h=600&fit=crop" 
+                  alt="Results & Growth"
+                  loading="lazy"
+                />
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Final CTA -->
+        <div class="final-card">
+          <h3 class="heading text-4xl mb-6">Start Your Transformation Today</h3>
+          <p class="body-text text-xl mb-8 max-w-2xl mx-auto">
+            Join business owners who've stopped managing their managers and started seeing real results. Get a strategic partner who delivers measurable outcomes—without adding to your mental load.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="#contact" class="cta-button">
+              S4Y - Get Started (Free Strategy Session)
+            </a>
+            <a href="#services" class="cta-button" style="background: linear-gradient(135deg, #8BA897 0%, #66BB6A 100%);">
+              See Our Services
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <script>
+    // Animated timeline dot that follows scroll
+    function animateTimelineDot() {
+      const timelineContainer = document.getElementById('timelineContainer');
+      const timelineDot = document.getElementById('timelineDot');
+      const timelineItems = document.querySelectorAll('.timeline-item');
+      
+      if (!timelineContainer || !timelineDot || timelineItems.length === 0) return;
+
+      function updateDotPosition() {
+        const containerRect = timelineContainer.getBoundingClientRect();
+        const windowHeight = window.innerHeight;
+        const scrollTrigger = windowHeight / 2; // Middle of viewport
+        
+        // Calculate how far through the timeline we've scrolled
+        let activeStep = null;
+        let progress = 0;
+
+        timelineItems.forEach((item, index) => {
+          const itemRect = item.getBoundingClientRect();
+          const itemCenter = itemRect.top + (itemRect.height / 2);
+          
+          // Check if this item is in view
+          if (itemCenter < scrollTrigger) {
+            activeStep = item;
+            
+            // Calculate progress through this step
+            if (index < timelineItems.length - 1) {
+              const nextItem = timelineItems[index + 1];
+              const nextRect = nextItem.getBoundingClientRect();
+              const nextCenter = nextRect.top + (nextRect.height / 2);
+              const stepDistance = nextCenter - itemCenter;
+              const stepProgress = (scrollTrigger - itemCenter) / stepDistance;
+              progress = Math.min(Math.max(stepProgress, 0), 1);
+            } else {
+              progress = 1;
+            }
+          }
+        });
+
+        // Position the dot
+        if (activeStep) {
+          const stepRect = activeStep.getBoundingClientRect();
+          const stepRelativeTop = stepRect.top - containerRect.top;
+          const stepHeight = stepRect.height;
+          const dotPosition = stepRelativeTop + (stepHeight * progress);
+          
+          // Update dot position
+          timelineDot.style.top = `${Math.max(0, dotPosition)}px`;
+          
+          // Update dot color based on active step
+          const color = activeStep.dataset.color || '#FF8C5A';
+          timelineDot.style.borderColor = color;
+          
+          // Update shadow color
+          const rgbColor = hexToRgb(color);
+          if (rgbColor) {
+            timelineDot.style.boxShadow = `0 0 0 10px rgba(255, 255, 255, 0.6), 0 4px 20px rgba(${rgbColor.r}, ${rgbColor.g}, ${rgbColor.b}, 0.4)`;
+          }
+        }
+      }
+
+      // Helper function to convert hex to rgb
+      function hexToRgb(hex) {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? {
+          r: parseInt(result[1], 16),
+          g: parseInt(result[2], 16),
+          b: parseInt(result[3], 16)
+        } : null;
+      }
+
+      // Initial position
+      updateDotPosition();
+
+      // Update on scroll with smooth animation
+      let ticking = false;
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          window.requestAnimationFrame(() => {
+            updateDotPosition();
+            ticking = false;
+          });
+          ticking = true;
+        }
+      });
+
+      // Update on resize
+      window.addEventListener('resize', updateDotPosition);
+    }
+
+    // Initialize when DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', animateTimelineDot);
+    } else {
+      animateTimelineDot();
+    }
+  </script>
+</body>
+</html>
+

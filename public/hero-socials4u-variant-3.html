@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socials 4U - Hero Variant 3</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(90deg, rgba(255,251,247,0.96) 0%, rgba(248,244,240,0.90) 50%, rgba(255,251,247,0.96) 100%),
+                        url('../Inpso/Heading.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .heading {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            letter-spacing: -0.02em;
+        }
+
+        .subheading {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            color: #8B7355;
+            font-style: italic;
+        }
+
+        .body-text {
+            color: #5C5347;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #9B6B4F;
+            color: white;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: #7A5940;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 79, 0.3);
+        }
+
+        .hero-card {
+            background: white;
+            border-radius: 8px;
+            padding: 36px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            border-left: 4px solid #9B6B4F;
+        }
+
+        .hero-card:hover {
+            transform: translateX(8px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .card-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            margin-bottom: 12px;
+            font-size: 1.125rem;
+        }
+
+        .dual-image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .image-box {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+
+        .image-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.4s ease;
+        }
+
+        .image-box:hover img {
+            transform: scale(1.08);
+        }
+
+        .main-image {
+            height: 400px;
+        }
+
+        .secondary-image {
+            height: 190px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+
+            .dual-image-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .secondary-image {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Navigation -->
+        <nav class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold" style="font-family: 'Lora', serif; color: #2C2820; letter-spacing: 0.1em;">
+                    SOCIALS 4OU SAY
+                </div>
+                <div class="hidden md:flex gap-10 text-sm" style="color: #5C5347; font-weight: 500; letter-spacing: 0.05em;">
+                    <a href="#" class="hover:text-[#9B6B4F] transition">HOME</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">WORK</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">SERVICES</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">CONTACT</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+            <div class="grid lg:grid-cols-5 gap-12 items-start">
+                <!-- Left Column - Content (3 columns) -->
+                <div class="lg:col-span-3">
+                    <h1 class="heading text-5xl lg:text-6xl mb-4">
+                        SOCIALS 4U
+                    </h1>
+                    <p class="subheading text-2xl lg:text-3xl mb-8">
+                        Callie Cox
+                    </p>
+                    
+                    <p class="body-text text-lg mb-10 max-w-xl leading-relaxed">
+                        Strategic social media management meets compelling content writing. We craft authentic narratives that captivate audiences and convert followers into loyal community members.
+                    </p>
+
+                    <a href="#contact" class="cta-button mb-16">
+                        Elevate Your Brand
+                    </a>
+
+                    <!-- Service Cards -->
+                    <div class="space-y-6 mt-16">
+                        <div class="hero-card">
+                            <h3 class="card-title">Expert Influencer Strategy</h3>
+                            <p class="body-text text-sm mb-4">
+                                Strategic planning and partnership development that aligns with your brand values and delivers authentic engagement.
+                            </p>
+                            <a href="#" class="cta-button text-sm py-3 px-6">
+                                Learn More
+                            </a>
+                        </div>
+
+                        <div class="hero-card">
+                            <h3 class="card-title">Instagram Stories Strategy</h3>
+                            <p class="body-text text-sm mb-4">
+                                Daily story content that keeps your audience engaged, informed, and excited about your brand journey.
+                            </p>
+                            <a href="#" class="cta-button text-sm py-3 px-6">
+                                Learn More
+                            </a>
+                        </div>
+
+                        <div class="hero-card">
+                            <h3 class="card-title">Customized Marketing Strategy</h3>
+                            <p class="body-text text-sm mb-4">
+                                Tailored marketing plans that speak directly to your audience and drive measurable business results.
+                            </p>
+                            <a href="#" class="cta-button text-sm py-3 px-6">
+                                Learn More
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Images (2 columns) -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="image-box main-image">
+                        <img 
+                            src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=600&h=800&fit=crop" 
+                            alt="Team collaboration on social media strategy"
+                            loading="lazy"
+                        >
+                    </div>
+
+                    <div class="dual-image-grid">
+                        <div class="image-box secondary-image">
+                            <img 
+                                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop" 
+                                alt="Content planning workspace"
+                                loading="lazy"
+                            >
+                        </div>
+                        <div class="image-box secondary-image">
+                            <img 
+                                src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop" 
+                                alt="Social media analytics"
+                                loading="lazy"
+                            >
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Cards -->
+            <div class="grid md:grid-cols-3 gap-6 mt-16">
+                <div class="hero-card">
+                    <h3 class="card-title">Brand Development</h3>
+                    <p class="body-text text-sm mb-4">
+                        Build a memorable brand identity that resonates deeply and stands out in crowded markets.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="hero-card">
+                    <h3 class="card-title">Small Business Coaching</h3>
+                    <p class="body-text text-sm mb-4">
+                        One-on-one guidance for entrepreneurs ready to master social media and content marketing.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="hero-card">
+                    <h3 class="card-title">People Are Already Discovering</h3>
+                    <p class="body-text text-sm mb-4">
+                        Join successful brands transforming their digital presence with proven strategies.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

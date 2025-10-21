@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socials 4U - Colorful Variant 1</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, rgba(255,251,247,0.75) 0%, rgba(245,240,235,0.70) 100%),
+                        url('../Inpso/Heading.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .heading {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            letter-spacing: -0.02em;
+        }
+
+        .subheading {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            color: #8B7355;
+            font-style: italic;
+        }
+
+        .body-text {
+            color: #5C5347;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, #CD6D5D 0%, #A34347 100%);
+            color: white;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 15px rgba(205, 109, 93, 0.3);
+        }
+
+        .cta-button:hover {
+            background: linear-gradient(135deg, #B85E50 0%, #832E32 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(205, 109, 93, 0.4);
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 8px;
+            padding: 40px 32px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            border-top: 4px solid transparent;
+        }
+
+        .service-card.orange-accent {
+            border-top-color: #FF8C5A;
+        }
+
+        .service-card.yellow-accent {
+            border-top-color: #F4D160;
+        }
+
+        .service-card.pink-accent {
+            border-top-color: #F4A89F;
+        }
+
+        .service-card.green-accent {
+            border-top-color: #8BA897;
+        }
+
+        .service-card.burgundy-accent {
+            border-top-color: #A34347;
+        }
+
+        .service-card.peach-accent {
+            border-top-color: #E8A65D;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+        }
+
+        .service-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            margin-bottom: 16px;
+            font-size: 1.25rem;
+        }
+
+        .image-container {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.18);
+            position: relative;
+            border: 8px solid white;
+        }
+
+        .image-container::after {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(135deg, #FF8C5A, #F4A89F, #F4D160);
+            border-radius: 12px;
+            z-index: -1;
+            opacity: 0.6;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.5s ease;
+        }
+
+        .image-container:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-link {
+            color: #5C5347;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            font-size: 0.9rem;
+            letter-spacing: 0.05em;
+        }
+
+        .nav-link:hover {
+            color: #CD6D5D;
+        }
+
+        .color-accent {
+            display: inline-block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF8C5A, #F4D160, #8BA897, #F4A89F);
+            margin-bottom: 20px;
+            border-radius: 2px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Navigation -->
+        <nav class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold" style="font-family: 'Lora', serif; color: #2C2820; letter-spacing: 0.1em;">
+                    SOCIALS 4OU SAY
+                </div>
+                <div class="hidden md:flex gap-10">
+                    <a href="#" class="nav-link">HOME</a>
+                    <a href="#" class="nav-link">SERVICES</a>
+                    <a href="#" class="nav-link">ABOUT</a>
+                    <a href="#" class="nav-link">CONTACT</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto px-6 py-12 lg:py-20">
+            <!-- Top Section -->
+            <div class="text-center max-w-4xl mx-auto mb-16">
+                <div class="color-accent mx-auto"></div>
+                <h1 class="heading text-5xl lg:text-7xl mb-6">
+                    SOCIALS 4U
+                </h1>
+                <p class="subheading text-2xl lg:text-4xl mb-8">
+                    Callie Cox
+                </p>
+                <p class="body-text text-lg lg:text-xl mb-10 max-w-2xl mx-auto">
+                    Expert social media management and compelling content writing that transforms your digital presence into meaningful connections.
+                </p>
+                <a href="#contact" class="cta-button">
+                    Start Your Journey
+                </a>
+            </div>
+
+            <!-- Image and Services Grid -->
+            <div class="grid lg:grid-cols-3 gap-8 items-start">
+                <!-- Left Column - Services -->
+                <div class="space-y-8">
+                    <div class="service-card orange-accent">
+                        <h3 class="service-title">Expert Influencer Strategy</h3>
+                        <p class="body-text text-sm mb-6">
+                            Develop authentic partnerships and strategic campaigns that amplify your brand message and drive measurable results.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="service-card yellow-accent">
+                        <h3 class="service-title">Customized Marketing Strategy</h3>
+                        <p class="body-text text-sm mb-6">
+                            Data-driven strategies tailored to your unique business goals and target audience for maximum impact.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Center Column - Image -->
+                <div class="lg:row-span-2">
+                    <div class="image-container">
+                        <img 
+                            src="https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=800&h=1000&fit=crop" 
+                            alt="Creative workspace with social media planning"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+
+                <!-- Right Column - Services -->
+                <div class="space-y-8">
+                    <div class="service-card pink-accent">
+                        <h3 class="service-title">Instagram Stories Strategy</h3>
+                        <p class="body-text text-sm mb-6">
+                            Create engaging, thumb-stopping stories that keep your audience invested in your brand narrative every day.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="service-card green-accent">
+                        <h3 class="service-title">Brand Development</h3>
+                        <p class="body-text text-sm mb-6">
+                            Build a cohesive, memorable brand identity that stands out and resonates deeply with your ideal customers.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Services Row -->
+            <div class="grid md:grid-cols-2 gap-8 mt-8">
+                <div class="service-card burgundy-accent">
+                    <h3 class="service-title">Small Business Coaching</h3>
+                    <p class="body-text text-sm mb-6">
+                        Personalized coaching sessions designed to help small business owners master social media marketing and content creation strategies.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="service-card peach-accent">
+                    <h3 class="service-title">People Are Already Discovering</h3>
+                    <p class="body-text text-sm mb-6">
+                        Join the growing community of brands and creators who have transformed their social presence with our expert guidance and proven methods.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

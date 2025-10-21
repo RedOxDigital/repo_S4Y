@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socials 4U - Hero Variant 4</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .hero-section {
+            background: linear-gradient(to bottom, rgba(255,251,247,0.94) 0%, rgba(250,246,242,0.92) 40%, rgba(255,251,247,0.94) 100%),
+                        url('../Inpso/Heading.webp');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+        }
+
+        .heading {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            letter-spacing: -0.02em;
+        }
+
+        .subheading {
+            font-family: 'Lora', serif;
+            font-weight: 400;
+            color: #8B7355;
+            font-style: italic;
+        }
+
+        .body-text {
+            color: #5C5347;
+            line-height: 1.8;
+        }
+
+        .cta-button {
+            background: #9B6B4F;
+            color: white;
+            font-weight: 600;
+            padding: 16px 40px;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+        }
+
+        .cta-button:hover {
+            background: #7A5940;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(155, 107, 79, 0.3);
+        }
+
+        .compact-card {
+            background: white;
+            border-radius: 8px;
+            padding: 28px 24px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+            transition: all 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .compact-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+        }
+
+        .compact-title {
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            margin-bottom: 10px;
+            font-size: 1rem;
+        }
+
+        .hero-image-wrapper {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 16px 48px rgba(0,0,0,0.15);
+        }
+
+        .hero-image-wrapper img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .floating-badge {
+            position: absolute;
+            background: white;
+            padding: 16px 24px;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+            font-family: 'Lora', serif;
+            font-weight: 600;
+            color: #2C2820;
+            font-size: 0.9rem;
+        }
+
+        .badge-1 {
+            top: 20px;
+            right: 20px;
+        }
+
+        .badge-2 {
+            bottom: 20px;
+            left: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .hero-section {
+                background-attachment: scroll;
+            }
+
+            .floating-badge {
+                padding: 12px 16px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="hero-section">
+        <!-- Navigation -->
+        <nav class="max-w-7xl mx-auto px-6 py-8">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold" style="font-family: 'Lora', serif; color: #2C2820; letter-spacing: 0.1em;">
+                    SOCIALS 4OU SAY
+                </div>
+                <div class="hidden md:flex gap-10 text-sm font-medium" style="color: #5C5347; letter-spacing: 0.05em;">
+                    <a href="#" class="hover:text-[#9B6B4F] transition">HOME</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">PORTFOLIO</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">SERVICES</a>
+                    <a href="#" class="hover:text-[#9B6B4F] transition">BOOK NOW</a>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Hero Content -->
+        <div class="max-w-7xl mx-auto px-6 py-12 lg:py-16">
+            <!-- Top Section with Image -->
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-16">
+                <!-- Left - Text -->
+                <div>
+                    <h1 class="heading text-5xl lg:text-6xl mb-4">
+                        SOCIALS 4U
+                    </h1>
+                    <p class="subheading text-2xl lg:text-3xl mb-8">
+                        Callie Cox
+                    </p>
+                    
+                    <p class="body-text text-lg mb-8 max-w-lg leading-relaxed">
+                        Professional social media management and expert content writing services that help your brand connect authentically with your audience and grow your community.
+                    </p>
+
+                    <a href="#contact" class="cta-button">
+                        Work With Us
+                    </a>
+                </div>
+
+                <!-- Right - Image with Badges -->
+                <div class="hero-image-wrapper relative">
+                    <img 
+                        src="https://images.unsplash.com/photo-1551836022-4c4c79ecde51?w=800&h=600&fit=crop" 
+                        alt="Professional content creator workspace"
+                        loading="lazy"
+                    >
+                    <div class="floating-badge badge-1">
+                        ✨ 500+ Posts
+                    </div>
+                    <div class="floating-badge badge-2">
+                        📈 95% Growth
+                    </div>
+                </div>
+            </div>
+
+            <!-- Services Grid -->
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="compact-card">
+                    <h3 class="compact-title">Expert Influencer Strategy</h3>
+                    <p class="body-text text-sm mb-4 flex-grow">
+                        Strategic partnerships and campaigns that amplify your brand authentically.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="compact-card">
+                    <h3 class="compact-title">Instagram Stories Strategy</h3>
+                    <p class="body-text text-sm mb-4 flex-grow">
+                        Engaging daily stories that keep your audience coming back for more.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="compact-card">
+                    <h3 class="compact-title">Customized Marketing Strategy</h3>
+                    <p class="body-text text-sm mb-4 flex-grow">
+                        Tailored strategies designed for your unique business goals and audience.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                        Learn More
+                    </a>
+                </div>
+
+                <div class="compact-card">
+                    <h3 class="compact-title">Brand Development</h3>
+                    <p class="body-text text-sm mb-4 flex-grow">
+                        Build a cohesive brand identity that resonates and stands out.
+                    </p>
+                    <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                        Learn More
+                    </a>
+                </div>
+            </div>
+
+            <!-- Bottom Grid with Image and More Services -->
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Left - Image -->
+                <div class="lg:col-span-1">
+                    <div class="hero-image-wrapper">
+                        <img 
+                            src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=800&fit=crop" 
+                            alt="Team planning social media strategy"
+                            loading="lazy"
+                        >
+                    </div>
+                </div>
+
+                <!-- Right - Additional Services -->
+                <div class="lg:col-span-2 grid sm:grid-cols-2 gap-6">
+                    <div class="compact-card">
+                        <h3 class="compact-title">Small Business Coaching</h3>
+                        <p class="body-text text-sm mb-4 flex-grow">
+                            Personalized coaching to help small businesses thrive in the digital landscape and master social strategies.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="compact-card">
+                        <h3 class="compact-title">People Are Already Discovering</h3>
+                        <p class="body-text text-sm mb-4 flex-grow">
+                            Join successful brands who have transformed their social presence with our proven methods and expert guidance.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="compact-card">
+                        <h3 class="compact-title">Content Calendar Management</h3>
+                        <p class="body-text text-sm mb-4 flex-grow">
+                            Strategic content planning and scheduling that keeps your feed consistent and engaging.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                            Learn More
+                        </a>
+                    </div>
+
+                    <div class="compact-card">
+                        <h3 class="compact-title">Analytics & Optimization</h3>
+                        <p class="body-text text-sm mb-4 flex-grow">
+                            Data-driven insights and continuous optimization to maximize your social media ROI.
+                        </p>
+                        <a href="#" class="cta-button text-sm py-3 px-6 mt-auto">
+                            Learn More
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Call to Action Footer -->
+            <div class="mt-16 text-center max-w-3xl mx-auto">
+                <div class="compact-card">
+                    <h2 class="heading text-3xl lg:text-4xl mb-4">
+                        Ready to Transform Your Social Presence?
+                    </h2>
+                    <p class="body-text text-lg mb-8">
+                        Let's create a strategy that turns your social media into a powerful growth engine for your business.
+                    </p>
+                    <a href="#contact" class="cta-button">
+                        Schedule Your Consultation
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
+

@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BoringWork - Hero</title>
+  <meta name="description" content="Say goodbye to busywork. Hello smart work." />
+  <style>
+    /* Semantic Token System (subset aligned with Rule 10) */
+    :root {
+      /* Background System (approximate palette from screenshot) */
+      --background: 75 45% 90%; /* soft green */
+      --background-2: 70 55% 94%; /* lighter green */
+      --foreground: 210 10% 14%; /* dark text */
+      --muted: 70 40% 92%;
+      --muted-foreground: 210 9% 28%;
+
+      /* Brand/Accent */
+      --accent: 86 33% 44%;   /* green CTA */
+      --accent-foreground: 0 0% 100%;
+      --secondary: 46 92% 60%; /* yellow CTA */
+      --secondary-foreground: 30 20% 18%;
+
+      /* Surfaces */
+      --card: 0 0% 100%;
+      --card-foreground: var(--foreground);
+      --border: 75 25% 85%;
+
+      /* Effects */
+      --shadow-lg: 0 20px 40px hsl(210 10% 20% / 0.12);
+      --ring: 86 33% 44%;
+
+      /* Typography */
+      --font-sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+    }
+
+    /* Base */
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: var(--font-sans);
+      color: hsl(var(--foreground));
+      background: linear-gradient(0deg, hsl(var(--background)) 0%, hsl(var(--background-2)) 100%);
+    }
+    a { color: inherit; text-decoration: none; }
+
+    .container { width: min(1200px, 92vw); margin-inline: auto; }
+
+    /* Header */
+    header {
+      position: relative;
+      z-index: 2;
+      padding: 16px 0;
+    }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; }
+    .brand__icon {
+      width: 28px; height: 28px; border-radius: 6px;
+      background: hsl(var(--accent));
+      display: grid; place-items: center; color: hsl(var(--accent-foreground));
+      font-size: 16px; font-weight: 900;
+    }
+    nav { margin-left: auto; display: flex; gap: 24px; align-items: center; }
+    .nav-link { font-size: 14px; opacity: 0.9; }
+    .nav-link:focus-visible { outline: 3px solid hsl(var(--ring) / 0.5); outline-offset: 2px; border-radius: 6px; }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      isolation: isolate;
+      overflow: hidden;
+    }
+    /* Angled background split behind content (70/30 split, no border) */
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -2; /* ensure behind wedge, text, and image */
+      background: hsl(var(--background));
+    }
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background: hsl(var(--background-2));
+      clip-path: polygon(70% 0%, 100% 0%, 100% 100%, 60% 100%);
+    }
+
+    .hero__inner { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; gap: 40px; padding: 48px 0 36px; }
+
+    /* Right image with angled mask */
+    .hero__media {
+      position: relative; height: 420px; border-radius: 12px; overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    .hero__image { width: 100%; height: 100%; object-fit: cover; display: block; }
+    /* Light diagonal wedge in the screenshot's top-right */
+    .hero__wedge {
+      position: absolute; inset: -80px -120px auto auto; width: 60%; height: 60%;
+      background: linear-gradient(135deg, hsl(var(--background-2)) 0%, hsl(var(--background)) 100%);
+      transform: rotate(-10deg);
+      filter: saturate(1.05) brightness(1.05);
+      z-index: -1;
+    }
+
+    /* Left content */
+    .eyebrow { font-size: 12px; letter-spacing: .14em; text-transform: uppercase; opacity: .7; }
+    .headline { font-size: clamp(32px, 6vw, 60px); line-height: 1.05; font-weight: 800; margin: 10px 0 16px; }
+    .subhead { font-size: 16px; opacity: .9; margin-bottom: 28px; }
+
+    .cta-row { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; height: 48px; padding: 0 20px; border-radius: 10px; border: 0; cursor: pointer; font-weight: 700; transition: transform .15s ease, box-shadow .15s ease, background-color .2s ease; }
+    .btn:focus-visible { outline: 3px solid hsl(var(--ring) / 0.45); outline-offset: 2px; }
+    .btn--accent { background: hsl(var(--accent)); color: hsl(var(--accent-foreground)); box-shadow: 0 12px 20px hsl(86 33% 44% / .25); }
+    .btn--accent:hover { transform: translateY(-1px); }
+    .btn--secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); box-shadow: 0 12px 20px hsl(46 92% 60% / .28); }
+    .btn--secondary:hover { transform: translateY(-1px); }
+
+    /* Testimonials strip under hero (visual hint from screenshot) */
+    .strip { padding: 18px 0 36px; }
+    .strip__title { text-align: center; font-size: 12px; letter-spacing: .16em; opacity: .65; margin-bottom: 14px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { background: hsl(var(--card)); border: 1px solid hsl(var(--border)); border-radius: 12px; padding: 20px; box-shadow: 0 10px 20px hsl(210 10% 20% / 0.06); }
+    .card__title { font-weight: 700; margin: 0 0 6px; }
+    .card__text { margin: 0; opacity: .9; }
+
+    /* Services Section */
+    .services { padding: 60px 0; background: hsl(var(--muted)); }
+    .services__title { 
+      text-align: center; 
+      font-size: clamp(28px, 5vw, 48px); 
+      font-weight: 700; 
+      margin: 0 0 48px; 
+      color: hsl(var(--foreground));
+    }
+    .services__grid { 
+      display: grid; 
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+      gap: 24px; 
+      margin-bottom: 48px; 
+    }
+    .service-card { 
+      background: hsl(var(--card)); 
+      border: 1px solid hsl(var(--border)); 
+      border-radius: 16px; 
+      padding: 0; 
+      text-align: center; 
+      box-shadow: 0 8px 24px hsl(210 10% 20% / 0.08);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+      overflow: hidden;
+    }
+    .service-card:hover { 
+      transform: translateY(-4px); 
+      box-shadow: 0 12px 32px hsl(210 10% 20% / 0.12); 
+    }
+    .service-card__image {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      display: block;
+    }
+    .service-card__content {
+      padding: 24px;
+    }
+    .service-card__icon { 
+      display: flex; 
+      justify-content: center; 
+      margin-bottom: 16px; 
+      color: hsl(var(--muted-foreground));
+    }
+    .service-card__title { 
+      font-size: 18px; 
+      font-weight: 700; 
+      margin: 0 0 12px; 
+      color: hsl(var(--foreground));
+    }
+    .service-card__text { 
+      font-size: 14px; 
+      margin: 0; 
+      opacity: 0.8; 
+      line-height: 1.5;
+    }
+    .services__cta { 
+      display: flex; 
+      justify-content: center; 
+      gap: 16px; 
+      flex-wrap: wrap; 
+    }
+
+    /* Responsive */
+    @media (max-width: 980px) {
+      .hero__inner { grid-template-columns: 1fr; padding: 28px 0; text-align: center; }
+      .hero__media { height: 340px; }
+      nav { gap: 16px; }
+      /* adjust angle for mobile to keep it visually balanced */
+      .hero::after {
+        clip-path: polygon(0% 70%, 100% 60%, 100% 100%, 0% 100%);
+      }
+      /* larger, centered text on mobile */
+      .headline { font-size: clamp(40px, 8vw, 72px); }
+      .subhead { font-size: 18px; max-width: 90%; margin-left: auto; margin-right: auto; }
+      /* services responsive */
+      .services { padding: 40px 0; }
+      .services__grid { grid-template-columns: 1fr; gap: 20px; }
+      .services__cta { flex-direction: column; align-items: center; }
+      .services__cta .btn { width: 100%; max-width: 280px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container" style="display:flex; align-items:center; gap: 20px;">
+      <a href="#" class="brand" aria-label="BoringWork home">
+        <span class="brand__icon">🤖</span>
+        <span>BoringWork</span>
+      </a>
+      <nav aria-label="Primary navigation">
+        <a class="nav-link" href="#contact">Contact Brese</a>
+        <a class="nav-link" href="#account">Account</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="hero" aria-labelledby="hero-heading">
+    <div class="container hero__inner">
+      <div>
+        <div class="eyebrow" aria-hidden="true">&nbsp;</div>
+        <h1 id="hero-heading" class="headline">Say Goodbye to<br/>Busywork.<br/>Hello Smart Work</h1>
+        <p class="subhead">Tailored AI & Automation Solutions for Your Business</p>
+        <div class="cta-row">
+          <button class="btn btn--accent" aria-label="Schedule a demo">SCHEDULE A DEMO</button>
+          <a class="btn btn--secondary" href="#success" role="button">SEE OUR SUCCESS STORIES</a>
+        </div>
+      </div>
+      <div class="hero__media">
+        <!-- Replace the src below with your exact screenshot export to preserve fidelity -->
+        <img class="hero__image" src="./images/boringwork-hero.jpg" alt="Business owner smiling while using a tablet in a cafe with a laptop in the background" />
+        <div class="hero__wedge" aria-hidden="true"></div>
+      </div>
+    </div>
+
+    <section class="strip" aria-labelledby="testimonials-title">
+      <div class="container">
+        <h2 id="testimonials-title" class="strip__title">SMART WORK</h2>
+        <div class="cards" role="list">
+          <article class="card" role="listitem">
+            <h3 class="card__title">Streamlined invoices</h3>
+            <p class="card__text">Increased productivity ten‑fold.</p>
+          </article>
+          <article class="card" role="listitem">
+            <h3 class="card__title">New payroll schedules</h3>
+            <p class="card__text">Reduced computation hours drastically.</p>
+          </article>
+          <article class="card" role="listitem">
+            <h3 class="card__title">Simplified notes tasks</h3>
+            <p class="card__text">Doctor notes made simple and fast.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="services" aria-labelledby="services-title">
+      <div class="container">
+        <h2 id="services-title" class="services__title">Discover Our Services</h2>
+        <div class="services__grid" role="list">
+          <article class="service-card" role="listitem">
+            <img class="service-card__image" src="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Professional taking digital notes on tablet in modern office environment" loading="lazy" />
+            <div class="service-card__content">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/>
+                  <polyline points="14,2 14,8 20,8"/>
+                  <line x1="16" y1="13" x2="8" y2="13"/>
+                  <line x1="16" y1="17" x2="8" y2="17"/>
+                  <polyline points="10,9 9,9 8,9"/>
+                </svg>
+              </div>
+              <h3 class="service-card__title">Automated Note-Taking</h3>
+              <p class="service-card__text">Uses a camera with pre-work word correspondence notes</p>
+            </div>
+          </article>
+          
+          <article class="service-card" role="listitem">
+            <img class="service-card__image" src="https://images.unsplash.com/photo-1600880292203-757bb62b4baf?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Business team collaborating with digital documents and virtual meeting software" loading="lazy" />
+            <div class="service-card__content">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+                  <line x1="16" x2="16" y1="2" y2="6"/>
+                  <line x1="8" x2="8" y1="2" y2="6"/>
+                  <line x1="3" x2="21" y1="10" y2="10"/>
+                  <path d="m9 16 2 2 4-4"/>
+                </svg>
+              </div>
+              <h3 class="service-card__title">Automated Note-Taking</h3>
+              <p class="service-card__text">Uses various software or virtual and super correspondences</p>
+            </div>
+          </article>
+          
+          <article class="service-card" role="listitem">
+            <img class="service-card__image" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" alt="Healthcare professional using digital note-taking system with patient data management" loading="lazy" />
+            <div class="service-card__content">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/>
+                  <path d="m3.3 7 8.7 5 8.7-5"/>
+                  <path d="M12 22V12"/>
+                </svg>
+              </div>
+              <h3 class="service-card__title">Automated Note-Taking</h3>
+              <p class="service-card__text">Uses various new error-saved while storage and more</p>
+            </div>
+          </article>
+          
+          <article class="service-card" role="listitem">
+            <img class="service-card__image" src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80" alt="Business growth dashboard showing analytics and scalable platform solutions" loading="lazy" />
+            <div class="service-card__content">
+              <div class="service-card__icon" aria-hidden="true">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M3 3v18h18"/>
+                  <path d="m19 9-5 5-4-4-3 3"/>
+                  <circle cx="21" cy="5" r="2"/>
+                </svg>
+              </div>
+              <h3 class="service-card__title">Growth-Ready Platform</h3>
+              <p class="service-card__text">Easily enhance sales and service client solutions</p>
+            </div>
+          </article>
+        </div>
+        
+        <div class="services__cta">
+          <button class="btn btn--accent" aria-label="Schedule a demo">SCHEDULE A DEMO</button>
+          <a class="btn btn--secondary" href="#learn" role="button">LEARN MORE</a>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>

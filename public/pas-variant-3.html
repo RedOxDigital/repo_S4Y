@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PAS Variant 3 - Social Media Strategy | Socials4U</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Lora:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+
+    .heading {
+      font-family: 'Lora', serif;
+      font-weight: 600;
+      color: #2C2820;
+      letter-spacing: -0.02em;
+    }
+
+    .subheading {
+      font-family: 'Lora', serif;
+      font-weight: 400;
+      background: linear-gradient(135deg, #CD6D5D, #A34347);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      font-style: italic;
+    }
+
+    .body-text {
+      color: #5C5347;
+      line-height: 1.8;
+    }
+
+    .pas-section-v3 {
+      background: linear-gradient(135deg, rgba(255,251,247,0.75) 0%, rgba(241,240,235,0.7) 100%);
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Large artistic paint splotches inspired by the image */
+    .paint-splotch {
+      position: absolute;
+      z-index: 1;
+      opacity: 0.28;
+      filter: blur(1.5px);
+    }
+
+    .splotch-orange {
+      top: 8%;
+      left: 3%;
+      width: 400px;
+      height: 350px;
+      background: 
+        radial-gradient(ellipse at 35% 40%, rgba(255, 140, 90, 0.9) 0%, rgba(244, 168, 159, 0.7) 40%, transparent 70%),
+        radial-gradient(ellipse at 60% 55%, rgba(255, 179, 102, 0.8) 0%, transparent 50%);
+      border-radius: 55% 45% 60% 40% / 50% 55% 45% 50%;
+      transform: rotate(-8deg);
+      animation: splotch-pulse-1 18s ease-in-out infinite;
+    }
+
+    .splotch-teal {
+      top: 35%;
+      right: 5%;
+      width: 350px;
+      height: 320px;
+      background: 
+        radial-gradient(ellipse at 45% 50%, rgba(139, 168, 151, 0.85) 0%, rgba(164, 195, 178, 0.65) 45%, transparent 70%),
+        radial-gradient(ellipse at 65% 35%, rgba(129, 199, 132, 0.75) 0%, transparent 55%);
+      border-radius: 45% 55% 50% 50% / 55% 45% 55% 45%;
+      transform: rotate(12deg);
+      animation: splotch-pulse-2 16s ease-in-out infinite;
+    }
+
+    @keyframes splotch-pulse-1 {
+      0%, 100% { 
+        transform: rotate(-8deg) scale(1);
+        opacity: 0.28;
+      }
+      50% { 
+        transform: rotate(-6deg) scale(1.05);
+        opacity: 0.35;
+      }
+    }
+
+    @keyframes splotch-pulse-2 {
+      0%, 100% { 
+        transform: rotate(12deg) scale(1);
+        opacity: 0.28;
+      }
+      50% { 
+        transform: rotate(14deg) scale(1.08);
+        opacity: 0.32;
+      }
+    }
+
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+
+    /* Split panel layout inspired by the problem/solutions image */
+    .split-panel-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+      margin-bottom: 60px;
+    }
+
+    .panel {
+      background: white;
+      border-radius: 20px;
+      padding: 60px 45px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+      transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+      position: relative;
+      overflow: visible;
+    }
+
+    .panel::before {
+      content: '';
+      position: absolute;
+      top: -6px;
+      left: -6px;
+      right: -6px;
+      bottom: -6px;
+      border-radius: 25px;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .panel:hover {
+      transform: translateY(-15px) scale(1.03);
+      box-shadow: 0 30px 90px rgba(0,0,0,0.25);
+    }
+
+    .problem-panel::before {
+      background: linear-gradient(135deg, rgba(255, 140, 90, 0.4), rgba(205, 109, 93, 0.4));
+    }
+
+    .problem-panel:hover::before {
+      opacity: 1;
+    }
+
+    .solution-panel::before {
+      background: linear-gradient(135deg, rgba(139, 168, 151, 0.4), rgba(129, 199, 132, 0.4));
+    }
+
+    .solution-panel:hover::before {
+      opacity: 1;
+    }
+
+    .panel-label {
+      font-family: 'Lora', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 30px;
+      text-align: center;
+      padding-bottom: 20px;
+      border-bottom: 3px solid;
+    }
+
+    .problem-label {
+      color: #9E2410;
+      border-color: rgba(158, 36, 16, 0.3);
+    }
+
+    .solution-label {
+      color: #2C3A31;
+      border-color: rgba(139, 168, 151, 0.4);
+    }
+
+    /* Circular image with painted frame */
+    .circular-image-frame {
+      position: relative;
+      width: 350px;
+      height: 350px;
+      margin: 0 auto 40px;
+      border-radius: 50%;
+      overflow: hidden;
+      box-shadow: 0 25px 80px rgba(0,0,0,0.25);
+    }
+
+    .circular-image-frame::before {
+      content: '';
+      position: absolute;
+      inset: -15px;
+      background: 
+        conic-gradient(from 0deg at 50% 50%, 
+          #FF8C5A 0deg, 
+          #F4D160 72deg, 
+          #8BA897 144deg, 
+          #F4A89F 216deg, 
+          #CD6D5D 288deg, 
+          #FF8C5A 360deg);
+      border-radius: 50%;
+      z-index: -1;
+      animation: spin-slow 20s linear infinite;
+    }
+
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+
+    .circular-image-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      position: relative;
+    }
+
+    .agitate-section {
+      background: linear-gradient(135deg, rgba(158, 36, 16, 0.08) 0%, rgba(158, 36, 16, 0.04) 100%);
+      border-radius: 30px;
+      padding: 70px 50px;
+      margin: 80px 0;
+      box-shadow: 0 25px 70px rgba(158, 36, 16, 0.15);
+      border: 3px solid rgba(158, 36, 16, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .agitate-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      right: -30%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(255, 140, 90, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .pain-point-card {
+      background: white;
+      border-radius: 16px;
+      padding: 35px 28px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.4s ease;
+      border: 2px solid transparent;
+    }
+
+    .pain-point-card:hover {
+      transform: translateY(-10px) rotate(-2deg);
+      box-shadow: 0 20px 50px rgba(158, 36, 16, 0.2);
+      border-color: rgba(158, 36, 16, 0.3);
+    }
+
+    .pain-point-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 20px;
+    }
+
+    .cta-button {
+      background: linear-gradient(135deg, #FF8C5A 0%, #CD6D5D 100%);
+      color: white;
+      font-weight: 600;
+      padding: 20px 50px;
+      border-radius: 10px;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      font-size: 1.05rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+      box-shadow: 0 8px 25px rgba(255, 140, 90, 0.4);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-button::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.2);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s, height 0.6s;
+    }
+
+    .cta-button:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .cta-button:hover {
+      background: linear-gradient(135deg, #E67A4C 0%, #B85E50 100%);
+      transform: translateY(-5px) scale(1.05);
+      box-shadow: 0 15px 40px rgba(255, 140, 90, 0.6);
+    }
+
+    .cta-button span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-list-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 20px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.7);
+      border-radius: 12px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+    }
+
+    .feature-list-item:hover {
+      background: white;
+      transform: translateX(10px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+
+    .feature-icon-circle {
+      flex-shrink: 0;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+    }
+
+    @media (max-width: 1024px) {
+      .split-panel-container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .circular-image-frame {
+        width: 280px;
+        height: 280px;
+      }
+
+      .agitate-section {
+        padding: 50px 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <section class="pas-section-v3">
+    <!-- Large Paint Splotches -->
+    <div class="paint-splotch splotch-orange"></div>
+    <div class="paint-splotch splotch-teal"></div>
+
+    <div class="content-wrapper">
+      <div class="max-w-7xl mx-auto px-6 py-20">
+        
+        <!-- Header -->
+        <div class="text-center mb-20">
+          <h1 class="heading text-6xl lg:text-7xl mb-6">
+            PROBLEM → SOLUTIONS
+          </h1>
+          <p class="subheading text-3xl lg:text-4xl">
+            The Social Media Transformation You've Been Waiting For
+          </p>
+        </div>
+
+        <!-- Split Panel: Problem & Solution Overview -->
+        <div class="split-panel-container mb-20">
+          <!-- Problem Panel -->
+          <div class="panel problem-panel">
+            <div class="panel-label problem-label">Problem</div>
+            
+            <div class="circular-image-frame">
+              <img 
+                src="https://images.unsplash.com/photo-1584438784894-089d6a62b8fa?w=600&h=600&fit=crop" 
+                alt="Frustrated Business Owner"
+                loading="lazy"
+              />
+            </div>
+
+            <h2 class="heading text-3xl mb-6 text-center">Social Media Feels Broken?</h2>
+            <p class="body-text text-lg mb-6">
+              If your social media marketing <strong>isn't generating revenue or clients</strong>, it is broken. You are trapped in a cycle of creating content that "looks busy but doesn't actually bring in any clients."
+            </p>
+            <p class="body-text text-lg">
+              You're exhausting time and resources on activity that fails to translate into tangible sales.
+            </p>
+
+            <div class="mt-10 space-y-3">
+              <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                <span class="text-2xl">❌</span>
+                <span class="body-text font-semibold">Zero client acquisition</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                <span class="text-2xl">⏰</span>
+                <span class="body-text font-semibold">Time wasted daily</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-red-50 rounded-lg">
+                <span class="text-2xl">📉</span>
+                <span class="body-text font-semibold">Declining engagement</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Solution Panel -->
+          <div class="panel solution-panel">
+            <div class="panel-label solution-label">Solutions</div>
+            
+            <div class="circular-image-frame">
+              <img 
+                src="https://images.unsplash.com/photo-1553877522-43269d4ea984?w=600&h=600&fit=crop" 
+                alt="Strategic Success"
+                loading="lazy"
+              />
+            </div>
+
+            <h2 class="heading text-3xl mb-6 text-center">Turn Busywork Into a Client Engine</h2>
+            <p class="body-text text-lg mb-6">
+              Move from chaos to clarity with a <strong>proven strategic framework</strong>. We establish your foundation: your single best offer, ideal client, and the message that truly connects.
+            </p>
+            <p class="body-text text-lg">
+              Then we build a powerful <strong>content engine</strong> that predictably turns your audience into high-value clients.
+            </p>
+
+            <div class="mt-10 space-y-3">
+              <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                <span class="text-2xl">✅</span>
+                <span class="body-text font-semibold">Crystal clear strategy</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                <span class="text-2xl">🚀</span>
+                <span class="body-text font-semibold">Consistent content engine</span>
+              </div>
+              <div class="flex items-center gap-3 p-3 bg-green-50 rounded-lg">
+                <span class="text-2xl">💰</span>
+                <span class="body-text font-semibold">Predictable client flow</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Agitate Section -->
+        <div class="agitate-section">
+          <div class="text-center mb-16">
+            <div class="feature-icon-circle mx-auto mb-6" style="background: linear-gradient(135deg, #9E2410, #7A1C0A); width: 90px; height: 90px; font-size: 42px;">
+              💥
+            </div>
+            <h2 class="heading text-4xl mb-8">Are You Exhausted from "Throwing Spaghetti at the Wall"?</h2>
+            <p class="body-text text-2xl mb-6 max-w-4xl mx-auto">
+              This constant "busywork" is <strong>frustrating</strong>. You're creating content just for the sake of it, only to watch it disappear as organic reach plummets to as low as <span style="color: #9E2410; font-weight: 700;">0.05%</span>.
+            </p>
+            <p class="body-text text-xl max-w-3xl mx-auto">
+              You're paralyzed by the need for "perfect" content, which leads to inconsistency, while chasing "ghost metrics" like follower counts that no longer matter.
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-4 gap-8 relative z-10">
+            <div class="pain-point-card">
+              <img 
+                src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop" 
+                alt="Analytics Dashboard"
+                loading="lazy"
+              />
+              <h3 class="body-text font-bold mb-2">Vanity Metrics</h3>
+              <p class="body-text text-sm">Chasing numbers that don't convert</p>
+            </div>
+
+            <div class="pain-point-card">
+              <img 
+                src="https://images.unsplash.com/photo-1542744094-3a31f272c490?w=400&h=300&fit=crop" 
+                alt="Content Struggle"
+                loading="lazy"
+              />
+              <h3 class="body-text font-bold mb-2">Perfectionism Trap</h3>
+              <p class="body-text text-sm">Waiting for perfect, posting never</p>
+            </div>
+
+            <div class="pain-point-card">
+              <img 
+                src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=400&h=300&fit=crop" 
+                alt="Team Collaboration"
+                loading="lazy"
+              />
+              <h3 class="body-text font-bold mb-2">Strategy Void</h3>
+              <p class="body-text text-sm">Random posts without purpose</p>
+            </div>
+
+            <div class="pain-point-card">
+              <img 
+                src="https://images.unsplash.com/photo-1495364141860-b0d03eccd065?w=400&h=300&fit=crop" 
+                alt="Clock Time"
+                loading="lazy"
+              />
+              <h3 class="body-text font-bold mb-2">Time Drain</h3>
+              <p class="body-text text-sm">Hours wasted, zero returns</p>
+            </div>
+          </div>
+
+          <div class="mt-16 p-10 bg-white rounded-2xl shadow-2xl border-4 border-red-200">
+            <p class="heading text-3xl text-center" style="color: #9E2410;">
+              This chaotic approach costs you your most valuable asset—<em>time</em>—and brings <strong>zero clients</strong> in the door.
+            </p>
+          </div>
+        </div>
+
+        <!-- Detailed Solution -->
+        <div class="max-w-5xl mx-auto mb-20">
+          <div class="text-center mb-16">
+            <h2 class="heading text-5xl mb-6">The S4Y Strategic Framework</h2>
+            <p class="body-text text-xl">From chaos to predictable client acquisition</p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-8">
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1557804506-669a67965ba0?w=700&h=500&fit=crop" 
+                alt="Strategic Planning"
+                class="w-full h-80 object-cover rounded-2xl shadow-2xl mb-6"
+                loading="lazy"
+              />
+              
+              <div class="space-y-4">
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #FF8C5A, #CD6D5D);">
+                    🎯
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Foundation First</h3>
+                    <p class="body-text text-sm">Crystal clear on your offer, ideal client, and message</p>
+                  </div>
+                </div>
+
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #F4D160, #E8A65D);">
+                    📝
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Content Engine</h3>
+                    <p class="body-text text-sm">Consistent value delivery that builds trust</p>
+                  </div>
+                </div>
+
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #8BA897, #66BB6A);">
+                    🤝
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Relationship Building</h3>
+                    <p class="body-text text-sm">Forge genuine connections with your audience</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <img 
+                src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=700&h=500&fit=crop" 
+                alt="Team Success"
+                class="w-full h-80 object-cover rounded-2xl shadow-2xl mb-6"
+                loading="lazy"
+              />
+
+              <div class="space-y-4">
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #F4A89F, #CD6D5D);">
+                    💼
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Strategic Partnership</h3>
+                    <p class="body-text text-sm">We lead, you approve - zero mental load</p>
+                  </div>
+                </div>
+
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #9E2410, #CD6D5D);">
+                    📊
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Measurable Results</h3>
+                    <p class="body-text text-sm">Track real business outcomes, not vanity metrics</p>
+                  </div>
+                </div>
+
+                <div class="feature-list-item">
+                  <div class="feature-icon-circle" style="background: linear-gradient(135deg, #3D5A80, #52719D);">
+                    💰
+                  </div>
+                  <div>
+                    <h3 class="body-text font-bold text-lg mb-1">Client Conversion</h3>
+                    <p class="body-text text-sm">Predictable flow of high-value clients</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Final CTA -->
+        <div class="text-center">
+          <div class="panel max-w-4xl mx-auto" style="background: linear-gradient(135deg, rgba(255,251,247,0.95) 0%, rgba(255,255,255,0.95) 100%);">
+            <h2 class="heading text-4xl mb-6">Ready to Stop Managing Your Manager?</h2>
+            <p class="body-text text-xl mb-10 max-w-2xl mx-auto">
+              Experience the S4Y difference with a strategic partner who delivers total relief, measurable results, and gives you back your time—without the mental load.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+              <a href="#contact" class="cta-button">
+                <span>S4Y - Get Started (Free Strategy Session)</span>
+              </a>
+              <a href="#services" class="cta-button" style="background: linear-gradient(135deg, #8BA897 0%, #66BB6A 100%);">
+                <span>See the S4Y Blueprint</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</body>
+</html>
+
+
